@@ -49,11 +49,6 @@ Now, try out the [entire experiment](http://localhost:22362/) or demo specific p
 - [GraphTraining](http://localhost:22362/testexperiment?type=GraphTraining)
 - [PathIdentification](http://localhost:22362/testexperiment?type=PathIdentification)
 
-Push to heroku once you've set it as a git remote:
-```
-git push heroku master
-```
-
 ### Errors
 
 _Note: These instructions are likely to be very outdated._
@@ -63,6 +58,30 @@ If you're seeing an `Library not loaded: @rpath/libssl.1.1.dylib ... Reason: ima
 pip install --global-option=build_ext \
             --global-option="-I/usr/local/opt/openssl/include" \
             --global-option="-L/usr/local/opt/openssl/lib" -r requirements.txt
+```
+
+## Heroku
+
+This application needs the `heroku/nodejs` buildpack to compile JS/CSS/etc and the `heroku/python` buildpack to run the server. The following creates an application with appropriate buildpacks:
+```
+heroku create $PROJECTNAME --buildpack heroku/nodejs --buildpack heroku/python
+```
+
+If you already created the app with different buildpacks, the following will set the appropriate buildpacks:
+```
+heroku buildpacks:clear
+heroku buildpacks:add heroku/nodejs
+heroku buildpacks:add heroku/python
+```
+
+This project also requires a Postgres database when deployed. When creating an application, add a database with the following:
+```
+heroku addons:create heroku-postgresql
+```
+
+Once heroku has been [added as a git remote](https://devcenter.heroku.com/articles/git#create-a-heroku-remote), deploy with a push:
+```
+git push heroku master
 ```
 
 ## Experiment workflow

@@ -5,15 +5,12 @@
   "source": "templates/exp.template.html",
   "dependencies": {
     "eslint": "^7.26.0",
-    "parcel": "^2.0.0-rc.0"
+    "parcel": "^2.8.3"
   },
   "devDependencies": {},
   "scripts": {
     "build": "parcel build --no-scope-hoist --public-url /dist",
     "watch": "parcel watch --public-url /dist"
-  },
-  "engines": {
-    "node": "14.x"
   },
   "repository": {
     "type": "git",
